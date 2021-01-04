@@ -13,12 +13,16 @@ import { wrapper } from "../store/store";
 
 library.add(fas);
 
+/**
+ * <FirebaseAuthProvider firebase={firebase} {...config}>
+
+ </FirebaseAuthProvider>
+ * @param Component
+ * @param pageProps
+ * @constructor
+ */
 function App({ Component, pageProps }: AppProps) {
-  return (
-    <FirebaseAuthProvider firebase={firebase} {...config}>
-      <Component {...pageProps} />
-    </FirebaseAuthProvider>
-  );
+  return <Component {...pageProps} />;
 }
 
 export default wrapper.withRedux(App);
