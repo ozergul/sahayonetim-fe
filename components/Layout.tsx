@@ -10,6 +10,7 @@ import {
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { NextPage } from "next";
 import { connect } from "react-redux";
+import Head from "next/head";
 
 interface LayoutProps {}
 
@@ -18,6 +19,10 @@ const Layout: NextPage<LayoutProps> = ({ children }) => {
   const [rightToggle, setRightToggle] = useState(false);
   return (
     <div className={`d-flex ${leftToggle ? "toggled" : ""}`} id="wrapper">
+      <Head>
+        <title>Saha Yönetim</title>
+      </Head>
+
       <link
         rel="stylesheet"
         href="https://npmcdn.com/react-bootstrap-table/dist/react-bootstrap-table-all.min.css"
