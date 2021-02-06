@@ -7,92 +7,52 @@ import ModalForm from "../components/ModalForm";
 import { useForm } from "react-hook-form";
 import { workers } from "./workers";
 import { ExportCSV } from "../components/ExportCSV";
-export let shifts = [
+export let reports = [
   {
-    nameSurName: "Ahmet Göğebakan",
-    time: "8",
-    date: new Date(),
+    name: "Şantiye içi hırsızlık tutanağı",
+    date: "Sat Feb 03 2021 19:40:03 GMT+0300 (GMT+03:00)",
+    file: null,
   },
   {
-    nameSurName: "Mehmet Yılmaz",
-    time: "8",
-    date: new Date(),
+    name: "Şantiye içi kayıp malzeme tutanağı",
+    date: "Sat Feb 04 2021 19:40:03 GMT+0300 (GMT+03:00)",
+    file: null,
   },
   {
-    nameSurName: "Hüseyin Tok",
-    time: "8",
-    date: new Date(),
-  },
-  {
-    nameSurName: "Yılmaz Erdinç",
-    time: "8",
-    date: new Date(),
-  },
-  {
-    nameSurName: "Ozan Yılmaz",
-    time: "8",
-    date: new Date(),
-  },
-  {
-    nameSurName: "Cem Güven Tok",
-    time: "8",
-    date: new Date(),
-  },
-  {
-    nameSurName: "Kürşat Tepe",
-    time: "8",
-    date: new Date(),
-  },
-  {
-    nameSurName: "Korhan Kordel",
-    time: "8.5",
-    date: new Date(),
-  },
-  {
-    nameSurName: "Cem Güven Tok",
-    time: "8",
-    date: new Date(),
-  },
-  {
-    nameSurName: "Kürşat Tepe",
-    time: "0",
-    date: new Date(),
-  },
-  {
-    nameSurName: "Korhan Kordel",
-    time: "12",
-    date: new Date(),
+    name: "Günlük şantiye raporlaması",
+    date: "Sat Feb 04 2021 19:40:03 GMT+0300 (GMT+03:00)",
+    file: null,
   },
 ];
-const Shifts: NextPage = () => {
+const Reports: NextPage = () => {
   const { register, handleSubmit } = useForm();
   const onSubmit = (data) => {
-    shifts = [data, ...shifts];
+    reports = [data, ...reports];
   };
   const [items, setItems] = React.useState([]);
 
   React.useEffect(() => {
     setItems(
-      shifts.map((p, i) => ({
+      reports.map((p, i) => ({
         ...p,
         id: i + 1,
       }))
     );
-  }, [shifts]);
+  }, [reports]);
 
   return (
     <div>
-      <Layout pageTitle={"MEsailer"}>
+      <Layout pageTitle={"Tutanaklar"}>
         <div className={"d-flex mb-3"}>
           <ModalForm
-            buttonTitle={"Yeni Mesai Kaydı"}
+            buttonTitle={"Yeni Tutanak Ekle"}
             saveEvent={handleSubmit(onSubmit)}
           >
             <form>
               <Form.Control
                 type="text"
-                placeholder="Ad Soyad"
-                name="nameSurName"
+                placeholder="Dosya Adı"
+                name="name"
                 ref={register}
               />
 
@@ -100,13 +60,13 @@ const Shifts: NextPage = () => {
 
               <Form.Control
                 type="text"
-                placeholder="Süre"
-                name="time"
+                placeholder="Tarih"
+                name="date"
                 ref={register}
               />
             </form>
           </ModalForm>
-          <ExportCSV csvData={items} fileName={"shifts"} />
+          <ExportCSV csvData={items} fileName={"reports"} />
         </div>
 
         <BootstrapTable
@@ -129,17 +89,23 @@ const Shifts: NextPage = () => {
             ID
           </TableHeaderColumn>
           <TableHeaderColumn
-            dataField="nameSurName"
+            dataField="name"
             dataSort={true}
             filter={{ type: "TextFilter", delay: 1000 }}
           >
-            Ad Soyad
+            Ad
           </TableHeaderColumn>
           <TableHeaderColumn
-            dataField="time"
+            dataField="date"
             filter={{ type: "TextFilter", delay: 1000 }}
           >
-            Çalışma (saat)
+            Tarih
+          </TableHeaderColumn>
+          <TableHeaderColumn
+            dataField="file"
+            filter={{ type: "TextFilter", delay: 1000 }}
+          >
+            Dosya
           </TableHeaderColumn>
         </BootstrapTable>
       </Layout>
@@ -147,4 +113,4 @@ const Shifts: NextPage = () => {
   );
 };
 
-export default Shifts;
+export default Reports;

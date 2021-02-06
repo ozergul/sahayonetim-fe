@@ -1,16 +1,24 @@
 import React from "react";
 import Layout from "../components/Layout";
 import { NextPage } from "next";
-import { Alert, Card, Col, Row } from "react-bootstrap";
+import { Alert, Button, Card, Col, Row } from "react-bootstrap";
 import Link from "next/link";
 import { workers } from "./workers";
 import { materials } from "./materials";
 import { shifts } from "./shifts";
 
+const groupBy = (xs, key) => {
+  return xs.reduce(function (rv, x) {
+    (rv[x[key]] = rv[x[key]] || []).push(x);
+    return rv;
+  }, {});
+};
+
 const Home: NextPage = () => {
+  const materialsGrouped = groupBy(materials, "type") as any;
   return (
     <div>
-      <Layout>
+      <Layout pageTitle={"Anasayfa"}>
         <Alert variant="success">
           <Alert.Heading>
             Merhaba Saha Yönetim Uygulamasına hoşgeldin!
@@ -29,9 +37,11 @@ const Home: NextPage = () => {
             <Card>
               <Card.Body>
                 <Card.Title>Çalışanlar</Card.Title>
-                <Card.Text>Toplam çalışan sayısı: {workers.length}</Card.Text>
+                <Card.Text>
+                  Toplam çalışan sayısı: {workers.length} Kişi
+                </Card.Text>
                 <Link href={"/workers"}>
-                  <Card.Link>Çalışanları Yönet</Card.Link>
+                  <Button variant="outline-success">Çalışanları Yönet</Button>
                 </Link>
               </Card.Body>
             </Card>
@@ -41,10 +51,45 @@ const Home: NextPage = () => {
               <Card.Body>
                 <Card.Title>Malzemeler</Card.Title>
                 <Card.Text>
-                  Toplam aktif malzeme sayısı: {materials.length}
+                  Toplam aktif malzeme sayısı
+                  {Object.entries(materialsGrouped).map(([type, items], i1) => {
+                    return (
+                      <div key={i1}>
+                        {type}:
+                        <ul>
+                          {items.map((item, i) => {
+                            return (
+                              <li key={i}>
+                                <span
+                                  className={"d-flex justify-content-between"}
+                                >
+                                  {item.name}{" "}
+                                  <span>
+                                    {item.amount} {type}
+                                  </span>
+                                </span>
+                              </li>
+                            );
+                          })}
+                          <li>
+                            <span className={"d-flex justify-content-between"}>
+                              <b>Toplam:</b>{" "}
+                              <span>
+                                {items.reduce(
+                                  (acc, cur) => acc + cur.amount,
+                                  0
+                                )}{" "}
+                                {type}
+                              </span>
+                            </span>
+                          </li>
+                        </ul>
+                      </div>
+                    );
+                  })}
                 </Card.Text>
                 <Link href={"/materials"}>
-                  <Card.Link>Malzeme Ekle</Card.Link>
+                  <Button variant="outline-success">Malzeme Ekle</Button>
                 </Link>
               </Card.Body>
             </Card>
@@ -54,10 +99,12 @@ const Home: NextPage = () => {
               <Card.Body>
                 <Card.Title>Mesailer</Card.Title>
                 <Card.Text>
-                  Bugün yapılan toplam mesai: {shifts.length}
+                  Bugün yapılan toplam mesai:{" "}
+                  {shifts.reduce((acc, cur) => acc + parseInt(cur.time), 0)}{" "}
+                  saat
                 </Card.Text>
-                <Link href={"/materials"}>
-                  <Card.Link>Mesaileri Yönet</Card.Link>
+                <Link href={"/shifts"}>
+                  <Button variant="outline-success">Mesaileri Yönet</Button>
                 </Link>
               </Card.Body>
             </Card>

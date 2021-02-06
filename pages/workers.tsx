@@ -2,73 +2,106 @@ import React from "react";
 import Layout from "../components/Layout";
 import { NextPage } from "next";
 import { BootstrapTable, TableHeaderColumn } from "react-bootstrap-table";
-import { Button } from "react-bootstrap";
+import { Button, Form } from "react-bootstrap";
+import ModalForm from "../components/ModalForm";
+import { useForm } from "react-hook-form";
+import { ExportCSV } from "../components/ExportCSV";
 
 export let workers = [
   {
-    nameSurname: "Ahmet Göğebakan",
+    nameSurName: "Ahmet Göğebakan",
     status: "İşçi",
   },
   {
-    nameSurname: "Mehmet Yılmaz",
+    nameSurName: "Mehmet Yılmaz",
     status: "İşçi",
   },
   {
-    nameSurname: "Hüseyin Tok",
+    nameSurName: "Hüseyin Tok",
     status: "İşçi",
   },
   {
-    nameSurname: "Yılmaz Erdinç",
+    nameSurName: "Yılmaz Erdinç",
     status: "İşçi",
   },
   {
-    nameSurname: "Ozan Yılmaz",
+    nameSurName: "Ozan Yılmaz",
     status: "İşçi",
   },
   {
-    nameSurname: "Cem Güven Tok",
+    nameSurName: "Cem Güven Tok",
     status: "İşçi",
   },
   {
-    nameSurname: "Kürşat Tepe",
+    nameSurName: "Kürşat Tepe",
     status: "İşçi",
   },
   {
-    nameSurname: "Korhan Kordel",
+    nameSurName: "Korhan Kordel",
     status: "İşçi",
   },
   {
-    nameSurname: "Cem Güven Tok",
+    nameSurName: "Cem Güven Tok",
     status: "İşçi",
   },
   {
-    nameSurname: "Kürşat Tepe",
+    nameSurName: "Kürşat Tepe",
     status: "İşçi",
   },
   {
-    nameSurname: "Korhan Kordel",
+    nameSurName: "Korhan Kordel",
     status: "İşçi",
   },
-];
+] as any;
 
 const Workers: NextPage = () => {
-  workers = workers.map((p, i) => ({
-    ...p,
-    id: i + 1,
-  }));
+  const { register, handleSubmit } = useForm();
+  const onSubmit = (data) => {
+    workers = [data, ...workers];
+  };
+  const [items, setItems] = React.useState([]);
+
+  React.useEffect(() => {
+    setItems(
+      workers.map((p, i) => ({
+        ...p,
+        id: i + 1,
+      }))
+    );
+  }, [workers]);
 
   return (
     <div>
-      <Layout>
+      <Layout pageTitle={"Çalışanlar"}>
         <div className={"d-flex mb-3"}>
-          <Button variant="success" className="mr-2">
-            Yeni Çalışan
-          </Button>
-          <Button variant="info">Excel İndir</Button>
+          <ModalForm
+            buttonTitle={"Yeni Çalışan"}
+            saveEvent={handleSubmit(onSubmit)}
+          >
+            <form>
+              <Form.Control
+                type="text"
+                placeholder="Ad Soyad"
+                name="nameSurName"
+                ref={register}
+              />
+
+              <br />
+
+              <Form.Control as="select" name="status" ref={register}>
+                <option>Mevki Seçin</option>
+                <option>İşçi</option>
+                <option>İnşaat Mühendisi</option>
+                <option>Genel Eleman</option>
+                <option>Yönetim</option>
+              </Form.Control>
+            </form>
+          </ModalForm>
+          <ExportCSV csvData={items} fileName={"workers"} />
         </div>
 
         <BootstrapTable
-          data={workers}
+          data={items}
           striped={true}
           hover={true}
           version="4"
@@ -84,10 +117,10 @@ const Workers: NextPage = () => {
             dataSort={true}
             filter={{ type: "TextFilter", delay: 1000 }}
           >
-            Çalışan ID
+            ID
           </TableHeaderColumn>
           <TableHeaderColumn
-            dataField="nameSurname"
+            dataField="nameSurName"
             dataSort={true}
             filter={{ type: "TextFilter", delay: 1000 }}
           >

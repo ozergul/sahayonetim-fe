@@ -13,15 +13,17 @@ import { connect } from "react-redux";
 import Head from "next/head";
 import Link from "next/link";
 
-interface LayoutProps {}
+interface LayoutProps {
+  pageTitle?: string;
+}
 
-const Layout: NextPage<LayoutProps> = ({ children }) => {
+const Layout: NextPage<LayoutProps> = ({ children, pageTitle = "" }) => {
   const [leftToggle, setLeftToggle] = useState(false);
   const [rightToggle, setRightToggle] = useState(false);
   return (
     <div className={`d-flex ${leftToggle ? "toggled" : ""}`} id="wrapper">
       <Head>
-        <title>Saha Yönetim</title>
+        <title>Saha Yönetim {pageTitle ? `- ${pageTitle}` : ""}</title>
       </Head>
 
       <link
@@ -79,10 +81,11 @@ const Layout: NextPage<LayoutProps> = ({ children }) => {
               <Nav.Link>Anasayfa</Nav.Link>
               <Nav.Link>Üyeliğim</Nav.Link>
               <NavDropdown title="Aksiyonlar" id="basic-nav-dropdown">
-                <NavDropdown.Item href="#action/3.2">
+                <NavDropdown.Item href={"/form/permit"}>
                   İzin Formu
                 </NavDropdown.Item>
-                <NavDropdown.Item href="#action/3.3">
+
+                <NavDropdown.Item href={"/form/request"}>
                   Talep Formu
                 </NavDropdown.Item>
                 <NavDropdown.Divider />
