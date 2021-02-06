@@ -52,41 +52,51 @@ const Home: NextPage = () => {
                 <Card.Title>Malzemeler</Card.Title>
                 <Card.Text>
                   Toplam aktif malzeme sayısı
-                  {Object.entries(materialsGrouped).map(([type, items], i1) => {
-                    return (
-                      <div key={i1}>
-                        {type}:
-                        <ul>
-                          {items.map((item, i) => {
-                            return (
-                              <li key={i}>
-                                <span
-                                  className={"d-flex justify-content-between"}
-                                >
-                                  {item.name}{" "}
-                                  <span>
-                                    {item.amount} {type}
+                  {Object.entries(materialsGrouped).map(
+                    (
+                      [type, items]: [
+                        type: string,
+                        items: { amount: string; name: string }[]
+                      ],
+                      i1
+                    ) => {
+                      return (
+                        <div key={i1}>
+                          {type}:
+                          <ul>
+                            {items.map((item, i) => {
+                              return (
+                                <li key={i}>
+                                  <span
+                                    className={"d-flex justify-content-between"}
+                                  >
+                                    {item.name}{" "}
+                                    <span>
+                                      {item.amount} {type}
+                                    </span>
                                   </span>
+                                </li>
+                              );
+                            })}
+                            <li>
+                              <span
+                                className={"d-flex justify-content-between"}
+                              >
+                                <b>Toplam:</b>{" "}
+                                <span>
+                                  {items.reduce(
+                                    (acc, cur) => acc + parseInt(cur.amount),
+                                    0
+                                  )}{" "}
+                                  {type}
                                 </span>
-                              </li>
-                            );
-                          })}
-                          <li>
-                            <span className={"d-flex justify-content-between"}>
-                              <b>Toplam:</b>{" "}
-                              <span>
-                                {items.reduce(
-                                  (acc, cur) => acc + cur.amount,
-                                  0
-                                )}{" "}
-                                {type}
                               </span>
-                            </span>
-                          </li>
-                        </ul>
-                      </div>
-                    );
-                  })}
+                            </li>
+                          </ul>
+                        </div>
+                      );
+                    }
+                  )}
                 </Card.Text>
                 <Link href={"/materials"}>
                   <Button variant="outline-success">Malzeme Ekle</Button>
