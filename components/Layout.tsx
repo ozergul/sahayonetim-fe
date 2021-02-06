@@ -11,6 +11,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { NextPage } from "next";
 import { connect } from "react-redux";
 import Head from "next/head";
+import Link from "next/link";
 
 interface LayoutProps {}
 
@@ -31,24 +32,36 @@ const Layout: NextPage<LayoutProps> = ({ children }) => {
       <div className="bg-light border-right" id="sidebar-wrapper">
         <div className="sidebar-heading">Saha Yonetim</div>
         <div className="list-group list-group-flush">
-          <a className="list-group-item list-group-item-action bg-light">
-            Ana Menü
-          </a>
-          <a className="list-group-item list-group-item-action bg-light">
-            Çalışanlar
-          </a>
-          <a className="list-group-item list-group-item-action bg-light">
-            Malzemeler
-          </a>
-          <a className="list-group-item list-group-item-action bg-light">
-            Tutanaklar
-          </a>
-          <a className="list-group-item list-group-item-action bg-light">
-            Mesailer
-          </a>
-          <a className="list-group-item list-group-item-action bg-light">
-            Evraklar
-          </a>
+          <Link href={"/"}>
+            <a className="list-group-item list-group-item-action bg-light">
+              Ana Menü
+            </a>
+          </Link>
+          <Link href={"/workers"}>
+            <a className="list-group-item list-group-item-action bg-light">
+              Çalışanlar
+            </a>
+          </Link>
+          <Link href={"/materials"}>
+            <a className="list-group-item list-group-item-action bg-light">
+              Malzemeler
+            </a>
+          </Link>
+          <Link href={"/reports"}>
+            <a className="list-group-item list-group-item-action bg-light">
+              Tutanaklar
+            </a>
+          </Link>
+          <Link href={"/shifts"}>
+            <a className="list-group-item list-group-item-action bg-light">
+              Mesailer
+            </a>
+          </Link>
+          <Link href={"/documents"}>
+            <a className="list-group-item list-group-item-action bg-light">
+              Evraklar
+            </a>
+          </Link>
         </div>
       </div>
       <div id="page-content-wrapper">

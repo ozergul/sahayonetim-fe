@@ -3,56 +3,54 @@ import Layout from "../components/Layout";
 import { NextPage } from "next";
 import { BootstrapTable, TableHeaderColumn } from "react-bootstrap-table";
 import { Button } from "react-bootstrap";
-
-const Workers: NextPage = () => {
-  var products = [
-    {
-      nameSurname: "Ahmet Göğebakan",
-      time: "8",
-    },
-    {
-      nameSurname: "Mehmet Yılmaz",
-      time: "8",
-    },
-    {
-      nameSurname: "Hüseyin Tok",
-      time: "8",
-    },
-    {
-      nameSurname: "Yılmaz Erdinç",
-      time: "8",
-    },
-    {
-      nameSurname: "Ozan Yılmaz",
-      time: "8",
-    },
-    {
-      nameSurname: "Cem Güven Tok",
-      time: "8",
-    },
-    {
-      nameSurname: "Kürşat Tepe",
-      time: "8",
-    },
-    {
-      nameSurname: "Korhan Kordel",
-      time: "8.5",
-    },
-    {
-      nameSurname: "Cem Güven Tok",
-      time: "8",
-    },
-    {
-      nameSurname: "Kürşat Tepe",
-      time: "-",
-    },
-    {
-      nameSurname: "Korhan Kordel",
-      time: "12",
-    },
-  ];
-
-  products = products.map((p, i) => ({
+export let shifts = [
+  {
+    nameSurname: "Ahmet Göğebakan",
+    time: "8",
+  },
+  {
+    nameSurname: "Mehmet Yılmaz",
+    time: "8",
+  },
+  {
+    nameSurname: "Hüseyin Tok",
+    time: "8",
+  },
+  {
+    nameSurname: "Yılmaz Erdinç",
+    time: "8",
+  },
+  {
+    nameSurname: "Ozan Yılmaz",
+    time: "8",
+  },
+  {
+    nameSurname: "Cem Güven Tok",
+    time: "8",
+  },
+  {
+    nameSurname: "Kürşat Tepe",
+    time: "8",
+  },
+  {
+    nameSurname: "Korhan Kordel",
+    time: "8.5",
+  },
+  {
+    nameSurname: "Cem Güven Tok",
+    time: "8",
+  },
+  {
+    nameSurname: "Kürşat Tepe",
+    time: "-",
+  },
+  {
+    nameSurname: "Korhan Kordel",
+    time: "12",
+  },
+];
+const Shifts: NextPage = () => {
+  shifts = shifts.map((p, i) => ({
     ...p,
     id: i + 1,
   }));
@@ -68,7 +66,7 @@ const Workers: NextPage = () => {
         </div>
 
         <BootstrapTable
-          data={products}
+          data={shifts}
           striped={true}
           hover={true}
           version="4"
@@ -105,4 +103,4 @@ const Workers: NextPage = () => {
   );
 };
 
-export default Workers;
+export default Shifts;

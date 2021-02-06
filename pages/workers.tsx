@@ -4,55 +4,55 @@ import { NextPage } from "next";
 import { BootstrapTable, TableHeaderColumn } from "react-bootstrap-table";
 import { Button } from "react-bootstrap";
 
-const Workers: NextPage = () => {
-  var products = [
-    {
-      nameSurname: "Ahmet Göğebakan",
-      status: "İşçi",
-    },
-    {
-      nameSurname: "Mehmet Yılmaz",
-      status: "İşçi",
-    },
-    {
-      nameSurname: "Hüseyin Tok",
-      status: "İşçi",
-    },
-    {
-      nameSurname: "Yılmaz Erdinç",
-      status: "İşçi",
-    },
-    {
-      nameSurname: "Ozan Yılmaz",
-      status: "İşçi",
-    },
-    {
-      nameSurname: "Cem Güven Tok",
-      status: "İşçi",
-    },
-    {
-      nameSurname: "Kürşat Tepe",
-      status: "İşçi",
-    },
-    {
-      nameSurname: "Korhan Kordel",
-      status: "İşçi",
-    },
-    {
-      nameSurname: "Cem Güven Tok",
-      status: "İşçi",
-    },
-    {
-      nameSurname: "Kürşat Tepe",
-      status: "İşçi",
-    },
-    {
-      nameSurname: "Korhan Kordel",
-      status: "İşçi",
-    },
-  ];
+export let workers = [
+  {
+    nameSurname: "Ahmet Göğebakan",
+    status: "İşçi",
+  },
+  {
+    nameSurname: "Mehmet Yılmaz",
+    status: "İşçi",
+  },
+  {
+    nameSurname: "Hüseyin Tok",
+    status: "İşçi",
+  },
+  {
+    nameSurname: "Yılmaz Erdinç",
+    status: "İşçi",
+  },
+  {
+    nameSurname: "Ozan Yılmaz",
+    status: "İşçi",
+  },
+  {
+    nameSurname: "Cem Güven Tok",
+    status: "İşçi",
+  },
+  {
+    nameSurname: "Kürşat Tepe",
+    status: "İşçi",
+  },
+  {
+    nameSurname: "Korhan Kordel",
+    status: "İşçi",
+  },
+  {
+    nameSurname: "Cem Güven Tok",
+    status: "İşçi",
+  },
+  {
+    nameSurname: "Kürşat Tepe",
+    status: "İşçi",
+  },
+  {
+    nameSurname: "Korhan Kordel",
+    status: "İşçi",
+  },
+];
 
-  products = products.map((p, i) => ({
+const Workers: NextPage = () => {
+  workers = workers.map((p, i) => ({
     ...p,
     id: i + 1,
   }));
@@ -68,7 +68,7 @@ const Workers: NextPage = () => {
         </div>
 
         <BootstrapTable
-          data={products}
+          data={workers}
           striped={true}
           hover={true}
           version="4"

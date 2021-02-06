@@ -4,46 +4,45 @@ import { NextPage } from "next";
 import { BootstrapTable, TableHeaderColumn } from "react-bootstrap-table";
 import { Button } from "react-bootstrap";
 
-const Workers: NextPage = () => {
-  var products = [
-    {
-      name: "Agrega",
-      type: "TON",
-      amount: 1,
-      status: "Onay Bekliyor",
-      starts: "Ahmet Şef",
-    },
-    {
-      name: "Agrega",
-      type: "TON",
-      amount: 3,
-      status: "Onaylanmış",
-      starts: "Ahmet Şef",
-    },
-    {
-      name: "Agrega",
-      type: "TON",
-      amount: 100,
-      status: "Red",
-      starts: "Ahmet Şef",
-    },
-    {
-      name: "Agrega",
-      type: "TON",
-      amount: 100,
-      status: "Red",
-      starts: "Ahmet Şef",
-    },
-    {
-      name: "Agrega",
-      type: "TON",
-      amount: 4,
-      status: "Onaylanmış",
-      starts: "Ahmet Şef",
-    },
-  ];
-
-  products = products.map((p, i) => ({
+export let materials = [
+  {
+    name: "Agrega",
+    type: "TON",
+    amount: 1,
+    status: "Onay Bekliyor",
+    starts: "Ahmet Şef",
+  },
+  {
+    name: "Agrega",
+    type: "TON",
+    amount: 3,
+    status: "Onaylanmış",
+    starts: "Ahmet Şef",
+  },
+  {
+    name: "Agrega",
+    type: "TON",
+    amount: 100,
+    status: "Red",
+    starts: "Ahmet Şef",
+  },
+  {
+    name: "Agrega",
+    type: "TON",
+    amount: 100,
+    status: "Red",
+    starts: "Ahmet Şef",
+  },
+  {
+    name: "Agrega",
+    type: "TON",
+    amount: 4,
+    status: "Onaylanmış",
+    starts: "Ahmet Şef",
+  },
+];
+const Materials: NextPage = () => {
+  materials = materials.map((p, i) => ({
     ...p,
     id: i + 1,
   }));
@@ -62,7 +61,7 @@ const Workers: NextPage = () => {
         </div>
 
         <BootstrapTable
-          data={products}
+          data={materials}
           striped={true}
           hover={true}
           version="4"
@@ -117,4 +116,4 @@ const Workers: NextPage = () => {
   );
 };
 
-export default Workers;
+export default Materials;
