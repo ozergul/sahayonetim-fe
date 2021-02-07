@@ -15,6 +15,7 @@ const Permit: NextPage = () => {
     <div>
       <Layout pageTitle={"İzin Formu"}>
         <h4>İzin formu</h4>
+        <hr />
         {show && (
           <Alert variant="danger" dismissible onClose={() => setShow(false)}>
             <Alert.Heading>Uyarı</Alert.Heading>

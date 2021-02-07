@@ -15,6 +15,7 @@ const Request: NextPage = () => {
     <div>
       <Layout pageTitle={"Talep Formu"}>
         <h4>Talep formu</h4>
+        <hr />
         <Row>
           <Col xs={12} md={6}>
             {sent && (

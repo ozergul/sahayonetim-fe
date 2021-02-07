@@ -78,8 +78,8 @@ const Layout: NextPage<LayoutProps> = ({ children, pageTitle = "" }) => {
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="mr-auto">
-              <Nav.Link>Anasayfa</Nav.Link>
-              <Nav.Link>Üyeliğim</Nav.Link>
+              <Nav.Link href={"/"}>Anasayfa</Nav.Link>
+              <Nav.Link href={"/profile"}>Üyeliğim</Nav.Link>
               <NavDropdown title="Aksiyonlar" id="basic-nav-dropdown">
                 <NavDropdown.Item href={"/form/permit"}>
                   İzin Formu
